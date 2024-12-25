@@ -1,10 +1,11 @@
 <?php
-$username = 'root';
-$password ="";
-$servername = 'localhost:3306';
-$dbname = "hanghoa";
-$mysql = new mysqli($servername, $username, $password, $dbname);
-if(!$mysql){
-    echo"Không thể kết nối đến cơ sở dữ liệu";
-}
+include "test2.html";
+$serverName = "banhang3.database.windows.net"; // update me
+$connectionOptions = array(
+    "Database" => "data2", // update me
+    "Uid" => "adminroot", // update me
+    "PWD" => "Dttmcnd3@" // update me
+);
+//Establishes the connection
+$mysql = sqlsrv_connect($serverName, $connectionOptions);
 ?>

@@ -22,29 +22,7 @@
 
 <div style="border: 1px solid black ; width: 100% ; height: 200px; text-align: center; ">
 <?php 
-$user = 'root'; 
-
-$password = ''; 
-  
-$database = 'hanghoa'; 
-  
-$servername='localhost:3306'; 
-
-$sva = mysqli_connect($servername, $user, $password, $database);  
-
-$query = "SELECT * FROM vandon"; 
-
-$is_query_run = mysqli_query($sva ,$query);
-
-while($querexcutr =$is_query_run ->fetch_assoc ()) 
-    { 
-        echo  "<h1>"
-        .$querexcutr['nguoinhan']."
-        ".$querexcutr['dienthoai']."
-        ".$querexcutr['diachi']."
-       ".$querexcutr['ngaygiaohang']."
-        ".$querexcutr['ghichu']." "; 
-    }
+include "ketnoi.php";
 ?> 
 </div>
 
@@ -65,7 +43,7 @@ while($querexcutr =$is_query_run ->fetch_assoc ())
 
 if(isset($_POST['form_click'])){
 
-$query = " INSERT INTO vandon(nguoinhan, dienthoai, diachi, ngaygiaohang, ghichu, imagelink) VALUES (
+$query = " INSERT INTO [dbo].[vandon](nguoinhan, dienthoai, diachi, ngaygiaohang, ghichu, imagelink) VALUES (
  
   ' " .$_POST['nguoinhan']. " ',
   ' " .$_POST['dienthoai']. " ',
@@ -75,7 +53,7 @@ $query = " INSERT INTO vandon(nguoinhan, dienthoai, diachi, ngaygiaohang, ghichu
   ' " .$_POST['imagelink']. "  ' )
   ";
 
-$is_query_run = mysqli_query($sva ,$query);
+$is_query_run = sqlsrv_query($sva ,$query);
 
 echo " lenh thanh cong ";
 }
@@ -88,7 +66,9 @@ if(isset($_POST['form_click2'])){
 ?>
 
 </form>
-
+<form menthod="get" action="nhap.php">      
+ <input type="submit">Nhập Thông Tin Học Sinh</input>
+</form>
 </body>
 
 </html>
